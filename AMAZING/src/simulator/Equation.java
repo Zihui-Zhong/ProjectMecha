@@ -6,27 +6,40 @@ public class Equation {
 	private double a,b,c;
 	//true = up, false = down
 	private boolean side;
-	
+
 	public Equation(double a, double b, double c,boolean side){
 		this.a=a;
 		this.b=b;
 		this.c=c;
 		this.side=side;
 	}
-	
+
 	public Equation(Coord p1, Coord p2,boolean side){
+
 		a=p2.getY()-p1.getY();
 		b=-(p2.getX()-p1.getX());
-		c=a*p1.getX()+b*p1.getY();
-		
-		if(c<0){
-			a=-a;
-			b=-b;
-			c=-c;
-		}
 		this.side=side;
+		if(a==0){
+			b=1;	
+			c=p1.getY();
+		}else{
+			if(b==0){
+				a=1;
+				c=p1.getX();
+			}else{
+				 c=a*p1.getX()+b*p2.getY();
+				 if(!isInside(new Coord(p1.getX(),p1.getY()+1))){
+					a=-a;
+					b=-b;
+					c=-c;
+				 }
+				 	
+			}
+		}
+
+		
 	}
-	
+
 	public boolean isInside(Coord coord){
 		if(side){
 			if((coord.getX()*a+coord.getY()*b)>=c)
@@ -75,6 +88,6 @@ public class Equation {
 		return "Equation [a=" + a + ", b=" + b + ", c=" + c + ", side=" + side
 				+ "]";
 	}
-	
-	
+
+
 }

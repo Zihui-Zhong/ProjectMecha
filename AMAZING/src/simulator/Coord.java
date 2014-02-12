@@ -21,5 +21,8 @@ public class Coord
 	public void setY(double y) {
 		this.y = y;
 	}
+	public Coord minus(Coord coord) {
+		return new Coord(this.x-coord.getX(),this.y-coord.getY());
+	}
 	
 }
