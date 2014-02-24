@@ -15,7 +15,6 @@ public class Equation {
 	}
 
 	public Equation(Coord p1, Coord p2,boolean side){
-
 		a=p2.getY()-p1.getY();
 		b=-(p2.getX()-p1.getX());
 		this.side=side;
